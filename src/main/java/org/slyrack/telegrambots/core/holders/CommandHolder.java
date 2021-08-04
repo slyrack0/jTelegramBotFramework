@@ -2,6 +2,7 @@ package org.slyrack.telegrambots.core.holders;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 import org.slyrack.telegrambots.Model;
 import org.slyrack.telegrambots.ModelAndView;
 import org.slyrack.telegrambots.session.Session;
@@ -11,9 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -38,7 +37,7 @@ public class CommandHolder extends MethodInvoker<ModelAndView> {
         super(ModelAndView.class, methodHolder, methodToCall);
 
 
-        this.states = Set.of(states);
+        this.states = new HashSet<>(Arrays.asList(states));
         this.stateless = isStateless(states);
         this.triggers = triggers;
         this.exclusive = exclusive;
@@ -49,7 +48,7 @@ public class CommandHolder extends MethodInvoker<ModelAndView> {
         if(stateless)
             return true;
 
-        if (currentStateName.isBlank())
+        if (StringUtils.isBlank(currentStateName))
             currentStateName = NO_STATE;
 
         return states.contains(currentStateName);

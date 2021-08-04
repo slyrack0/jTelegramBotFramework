@@ -1,5 +1,6 @@
 package org.slyrack.telegrambots.core.config;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slyrack.telegrambots.annotations.Command;
 import org.slyrack.telegrambots.annotations.Controller;
 import org.slyrack.telegrambots.annotations.HasText;
@@ -75,7 +76,7 @@ public class CommandConfig {
 
         return update -> {
             final Optional<String> strOpt = textTarget.apply(update);
-            if (strOpt.isEmpty())
+            if (!strOpt.isPresent())
                 return false;
 
             return stringPredicate.test(strOpt.get());
@@ -83,7 +84,7 @@ public class CommandConfig {
     }
 
     private static boolean notBlank(final String str) {
-        return !str.isBlank();
+        return !StringUtils.isBlank(str);
     }
 
     private static void setAndThrowIfNotNull(final AtomicReference<Predicate<String>> reference,
