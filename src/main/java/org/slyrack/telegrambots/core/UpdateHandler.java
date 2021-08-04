@@ -108,7 +108,7 @@ public class UpdateHandler {
                         state != null ? state.model() : null
                 );
 
-                if (commandResult.isEmpty())
+                if (!commandResult.isPresent())
                     continue;
 
                 final ModelAndView modelAndView = commandResult.get();
