@@ -15,3 +15,40 @@ that simplifies bot development by:
 
 see [framework-demo-bot](https://github.com/slyrack0/framework-demo-bot) for framework usage example.
 
+### Abstract processing flow
+```
+               receive updates from telegram
+
+       ─────────────────────────────────────────
+
+
+              ┌──────────────────────────┐
+              │                          │
+              │      ┌────────────┐      │
+              │      │ Middleware │      │  - execute service logic 
+              │      └─────┬──────┘      │
+              │            │             │
+              │      ┌─────▼──────┐      │
+              │      │ Command    │      │  - execute business logic
+              │      └─────┬──────┘      │
+              │            │             │
+              │      ┌─────▼──────┐      │
+              │      │ View       │      │  - build result message
+              │      └────────────┘      │
+              │                          │
+              └──────────────────────────┘
+
+
+       ─────────────────────────────────────────
+
+               send Message to telegram
+
+
+```
+
+### Session management
+
+Session is key value storage.
+
+The default is in memory session storage implementation. In this implementation data don't save between runs.
+
