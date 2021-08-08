@@ -2,5 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.slyrack.teleg
   org.slyrack.telegrambots.core.config.CommandConfig,\
   org.slyrack.telegrambots.core.config.ViewConfig,\
   org.slyrack.telegrambots.core.config.MiddleHandlerConfig,\
-  org.slyrack.telegrambots.UpdateHandlerConfig
+  org.slyrack.telegrambots.UpdateHandlerConfig,\
+  org.slyrack.telegrambots.bot.DefaultBotConfig
 
