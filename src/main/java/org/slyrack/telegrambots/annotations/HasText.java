@@ -1,6 +1,7 @@
 package org.slyrack.telegrambots.annotations;
 
 import org.slyrack.telegrambots.flags.TextTarget;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,6 +17,8 @@ import java.lang.annotation.Target;
  *     <li>{@link HasText#startsWith()}</li>
  *     <li>{@link HasText#endsWith()}</li>
  * </ul>
+ *
+ * Text for conditions will be giving from {@link TextTarget#apply(Update)}
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
