@@ -19,21 +19,21 @@ import org.springframework.context.annotation.Configuration;
 public class DefaultConfig {
 
     @Bean
-    @ConditionalOnProperty(value = "slyrack.enableStateManagement", havingValue = "true")
+    @ConditionalOnProperty(prefix = "slyrack", value = "enable-state-management", havingValue = "true")
     @ConditionalOnMissingBean(value = StateManager.class)
     public StateManager stateManager() {
         return new InMemoryStateManager();
     }
 
     @Bean
-    @ConditionalOnProperty(value = "slyrack.enableSessionManagement", havingValue = "true")
+    @ConditionalOnProperty(prefix = "slyrack", value = "enable-session-management", havingValue = "true")
     @ConditionalOnMissingBean(value = SessionIdGenerator.class)
     public SessionIdGenerator sessionIdGenerator() {
         return new ChatIdSessionIdGenerator();
     }
 
     @Bean
-    @ConditionalOnProperty(value = "slyrack.enableSessionManagement", havingValue = "true")
+    @ConditionalOnProperty(prefix = "slyrack", value = "enable-session-management", havingValue = "true")
     @ConditionalOnMissingBean(value = SessionManager.class)
     public SessionManager sessionManager(final SlyrackProperties properties) {
         return new InMemorySessionManager(properties.getSessionTtlMillis());
